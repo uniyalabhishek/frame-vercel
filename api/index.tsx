@@ -10,7 +10,8 @@ export const app = new Frog({
 });
 
 app.frame("/", (c) => {
-  const { status } = c;
+  const { status, frameData } = c;
+  const username = frameData?.fid ? `@${frameData.fid}` : "stranger";
 
   return c.res({
     image: (
@@ -31,7 +32,7 @@ app.frame("/", (c) => {
             textAlign: "center",
           }}
         >
-          {status === "response" ? "Hello World!" : "Please Sign In"}
+          {status === "response" ? `Hello ${username}!` : "Please Sign In"}
         </div>
       </div>
     ),
